@@ -16,38 +16,28 @@ const Footer = () => {
             <h3 className="font-heading font-semibold text-lg mb-4">Shop Categories</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/category/women-ethnic">
-                  <a className="text-gray-300 hover:text-white transition duration-200">
-                    Women Ethnic
-                  </a>
+                <Link href="/women-ethnic" className="text-gray-300 hover:text-white transition duration-200">
+                  Women Ethnic
                 </Link>
               </li>
               <li>
-                <Link href="/category/women-western">
-                  <a className="text-gray-300 hover:text-white transition duration-200">
-                    Women Western
-                  </a>
+                <Link href="/women-western" className="text-gray-300 hover:text-white transition duration-200">
+                  Women Western
                 </Link>
               </li>
               <li>
-                <Link href="/category/men">
-                  <a className="text-gray-300 hover:text-white transition duration-200">
-                    Men
-                  </a>
+                <Link href="/men" className="text-gray-300 hover:text-white transition duration-200">
+                  Men
                 </Link>
               </li>
               <li>
-                <Link href="/category/kids">
-                  <a className="text-gray-300 hover:text-white transition duration-200">
-                    Kids
-                  </a>
+                <Link href="/kids" className="text-gray-300 hover:text-white transition duration-200">
+                  Kids
                 </Link>
               </li>
               <li>
-                <Link href="/category/home-kitchen">
-                  <a className="text-gray-300 hover:text-white transition duration-200">
-                    Home & Kitchen
-                  </a>
+                <Link href="/home-kitchen" className="text-gray-300 hover:text-white transition duration-200">
+                  Home & Kitchen
                 </Link>
               </li>
             </ul>
