@@ -52,18 +52,18 @@ const ProductDetail = () => {
 
   // Track that the user viewed this product
   useEffect(() => {
-    if (product && !viewRecorded.current) {
-      // Set flag to prevent multiple recordings
-      viewRecorded.current = true;
-      
-      // Record view interaction
-      trackInteraction({
-        productId: product.id,
-        type: 'view',
-      });
+    const recordProductView = async () => {
+      if (product?.id && !viewRecorded.current) {
+        // Set flag to prevent multiple recordings
+        viewRecorded.current = true;
+        
+        // Record view interaction in local context
+        trackInteraction({
+          productId: product.id,
+          type: 'view',
+        });
 
-      // Track API call
-      const recordView = async () => {
+        // Track API call
         try {
           await apiRequest('POST', '/api/interactions', {
             productId: product.id,
@@ -72,11 +72,14 @@ const ProductDetail = () => {
         } catch (error) {
           console.error('Error recording view:', error);
         }
-      };
+      }
+    };
 
-      recordView();
-    }
-  }, [product?.id, trackInteraction]); // Only depend on product.id, not the entire product object
+    recordProductView();
+    
+    // Only run this effect once when product ID is available
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id]); // Only depend on product.id, not trackInteraction to avoid re-renders
 
   // Check if the product is in the wishlist
   useEffect(() => {
