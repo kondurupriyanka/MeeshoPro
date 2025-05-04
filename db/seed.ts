@@ -6,6 +6,27 @@ async function seed() {
   try {
     console.log("Starting database seeding...");
 
+    // Check if there are any users already
+    const existingUsers = await db.query.users.findMany();
+    if (existingUsers.length > 0) {
+      console.log(`Found ${existingUsers.length} existing users, skipping user seeding`);
+    } else {
+      // Seed users
+      console.log("Seeding users...");
+      const users = [
+        {
+          username: "demo_user",
+          password: "password123", // Note: In a real app, this should be hashed
+          email: "demo@example.com",
+          firstName: "Demo",
+          lastName: "User",
+        },
+      ];
+
+      const insertedUsers = await db.insert(schema.users).values(users).returning();
+      console.log(`Inserted ${insertedUsers.length} users`);
+    }
+
     // Check if there are any categories already
     const existingCategories = await db.query.categories.findMany();
     if (existingCategories.length > 0) {

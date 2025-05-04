@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import MainLayout from "@/layouts/MainLayout";
@@ -12,6 +12,9 @@ import { Truck, RotateCcw, Store, Star } from "lucide-react";
 import { useCartStore, useWishlistStore, useUserStore } from "@/lib/context";
 import { apiRequest } from "@/lib/queryClient";
 
+// Import the ProductCard component
+import ProductCard from "@/components/ProductCard";
+
 const ProductDetail = () => {
   const params = useParams<{ slug: string }>();
   const { slug } = params;
@@ -22,6 +25,7 @@ const ProductDetail = () => {
 
   const [activeImage, setActiveImage] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const viewRecorded = useRef(false);
 
   // Fetch product details
   const { data: product, isLoading: productLoading } = useQuery<Product>({
@@ -48,7 +52,10 @@ const ProductDetail = () => {
 
   // Track that the user viewed this product
   useEffect(() => {
-    if (product) {
+    if (product && !viewRecorded.current) {
+      // Set flag to prevent multiple recordings
+      viewRecorded.current = true;
+      
       // Record view interaction
       trackInteraction({
         productId: product.id,
@@ -69,16 +76,15 @@ const ProductDetail = () => {
 
       recordView();
     }
-  }, [product, trackInteraction]);
+  }, [product?.id, trackInteraction]); // Only depend on product.id, not the entire product object
 
   // Check if the product is in the wishlist
   useEffect(() => {
-    if (product && wishlistItems.some(item => item.id === product.id)) {
-      setIsWishlisted(true);
-    } else {
-      setIsWishlisted(false);
+    if (product?.id && wishlistItems) {
+      const inWishlist = wishlistItems.some(item => item.id === product.id);
+      setIsWishlisted(inWishlist);
     }
-  }, [product, wishlistItems]);
+  }, [product?.id, wishlistItems]);
 
   const handleAddToCart = () => {
     if (product) {
