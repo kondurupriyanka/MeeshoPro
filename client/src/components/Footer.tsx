@@ -56,35 +56,35 @@ const Footer = () => {
             <h3 className="font-heading font-semibold text-lg mb-4">Customer Policies</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/policies/return">
+                <Link href="/return-policy">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Return Policy
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/policies/terms">
+                <Link href="/terms-of-use">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Terms of Use
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/policies/privacy">
+                <Link href="/privacy-policy">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Privacy Policy
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/policies/cancellation">
+                <Link href="/cancellation-policy">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Cancellation Policy
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/policies/shipping">
+                <Link href="/shipping-info">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Shipping Info
                   </a>
@@ -96,7 +96,7 @@ const Footer = () => {
             <h3 className="font-heading font-semibold text-lg mb-4">Connect With Us</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about">
+                <Link href="/about-us">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     About Us
                   </a>
@@ -117,14 +117,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/help">
+                <Link href="/help-support">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Help & Support
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/sellers">
+                <Link href="/become-seller">
                   <a className="text-gray-300 hover:text-white transition duration-200">
                     Become a Seller
                   </a>

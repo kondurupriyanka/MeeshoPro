@@ -1,6 +1,6 @@
 import React from "react";
 import MainLayout from "@/layouts/MainLayout";
-import { useParams } from "wouter";
+import { useLocation } from "wouter";
 
 interface StaticPageProps {
   pageType: 'category' | 'policy' | 'info';
@@ -12,8 +12,9 @@ interface PageData {
 }
 
 const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
-  const params = useParams();
-  const slug = params.slug;
+  const [location] = useLocation();
+  // Extract the slug from the URL path (everything after the last /)
+  const slug = location.substring(1); // Remove the leading slash
   
   // Define all page content by type and slug
   const pageData: Record<string, Record<string, PageData>> = {
