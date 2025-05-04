@@ -10,6 +10,8 @@ import ProductListing from "@/pages/ProductListing";
 import ProductDetail from "@/pages/ProductDetail";
 import Wishlist from "@/pages/Wishlist";
 import Cart from "@/pages/Cart";
+import Profile from "@/pages/Profile";
+import StaticPage from "@/pages/StaticPage";
 
 import { CartProvider, WishlistProvider, UserInteractionProvider } from "./lib/context";
 
@@ -21,6 +23,7 @@ function Router() {
       <Route path="/product/:slug" component={ProductDetail} />
       <Route path="/wishlist" component={Wishlist} />
       <Route path="/cart" component={Cart} />
+      <Route path="/profile" component={Profile} />
       <Route component={NotFound} />
     </Switch>
   );

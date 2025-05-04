@@ -83,6 +83,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch product" });
     }
   });
+  
+  // Bulk products endpoint for retrieving multiple products by IDs
+  app.post("/api/products/bulk", async (req, res) => {
+    try {
+      const { productIds } = req.body;
+      
+      if (!productIds || !Array.isArray(productIds) || productIds.length === 0) {
+        return res.status(400).json({ message: "Valid product IDs array is required" });
+      }
+      
+      const products = await Promise.all(
+        productIds.map(id => storage.getProductById(Number(id)))
+      );
+      
+      // Filter out any null values (products not found)
+      const validProducts = products.filter(product => product !== undefined);
+      
+      res.json(validProducts);
+    } catch (error) {
+      console.error("Error fetching bulk products:", error);
+      res.status(500).json({ message: "Failed to fetch bulk products" });
+    }
+  });
 
   app.get("/api/products/similar/:id", async (req, res) => {
     try {
